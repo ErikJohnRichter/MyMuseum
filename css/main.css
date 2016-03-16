@@ -1,0 +1,244 @@
+body { 
+	padding-top: 70px;
+}
+p {
+    font-family: 'Comfortaa', cursive;
+    font-size: 18px;
+}
+
+label {
+    display:inline-block;
+    width:100px;
+    margin-bottom:10px;
+}
+
+.mainMobile{
+    display: none;
+}
+
+
+
+.label-as-badge {
+    border-radius: 1em;
+}
+
+.btn-xlarge {
+    padding: 18px 28px;
+    font-size: 22px; //change this to your desired size
+    line-height: normal;
+    -webkit-border-radius: 8px;
+       -moz-border-radius: 8px;
+            border-radius: 8px;
+}
+
+.grid {
+  margin: 0 auto;
+}
+
+.grid-container {
+    position: relative; 
+    width: 90%; 
+    margin: 0 auto;
+}
+
+.grow {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+}
+.grow:hover, .grow:focus, .grow:active {
+  -webkit-transform: scale(1.05);
+  transform: scale(1.05);
+}
+
+.one {
+    float: right;
+}
+
+.two{
+    float: left;
+}
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
+
+::-webkit-input-placeholder {
+    font-family: 'Comfortaa', cursive;
+   
+}
+
+.edit {
+    text-align: center;
+}
+
+h4 {
+    font-family: 'Comfortaa', cursive;
+    font-size: 40px;
+    margin-bottom: -10px;
+    color: red;
+}
+
+h3 {
+    font-family: 'Comfortaa', cursive;
+    font-size: 35px;
+    margin-bottom: -10px;
+    color: red;
+}
+
+.btn-file {
+    font-family: 'Comfortaa', cursive;
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+.item {
+  float: left;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+img {
+	max-width: 300px;
+	height: auto;
+	margin: 0 auto;
+    border-radius: 5px;
+}
+
+/*#grid {
+	width: 90%;
+	margin: 0 auto;
+	padding: 0 auto;
+	text-align: center;
+}*/
+
+.exhibit-modal {
+    padding-left: 0 !important;
+}
+
+.exhibit-modal .modal-content {
+    padding: 100px 0;
+    min-height: 100%;
+    border: 0;
+    border-radius: 0;
+    text-align: center;
+    background-clip: border-box;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.exhibit-modal .modal-content h2 {
+    margin-bottom: 15px;
+    font-size: 3em;
+
+}
+
+.exhibit-modal .modal-content p {
+    margin-bottom: 30px;
+    font-size: 20px;
+}
+
+.exhibit-modal .modal-content p.item-intro {
+    margin: 20px 0 30px;
+    font-family: 'Merriweather', serif;
+    font-size: 16px;
+    font-style: italic;
+}
+
+.exhibit-modal .modal-content ul.list-inline {
+    margin-top: 0;
+    margin-bottom: 30px;
+}
+
+.exhibit-modal .modal-content img {
+    margin: 0 auto;
+    margin-bottom: 30px;
+}
+
+.exhibit-modal .close-modal {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    width: 75px;
+    height: 75px;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.exhibit-modal .close-modal:hover {
+    opacity: .3;
+}
+
+.exhibit-modal .close-modal .lr {
+    z-index: 1051;
+    width: 1px;
+    height: 75px;
+    margin-left: 35px;
+    background-color: #222;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.exhibit-modal .close-modal .lr .rl {
+    z-index: 1052;
+    width: 1px;
+    height: 75px;
+    background-color: #222;
+    -webkit-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+.exhibit-modal .modal-body a {
+    color: #ffaf00;
+    text-decoration: none;
+}
+
+.exhibit-modal .modal-body a:hover {
+    color: #fed136;
+    text-decoration: none;
+}
+
+.memberList {
+    padding: 0 auto;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.memberList table {
+    padding: 0 auto;
+    margin: 0 auto;
+    text-align: left;
+}
+
+@media (max-width: 479px) {
+    .mainPc{
+    display: none;
+}
+    .mainMobile {
+        display: inline-block;
+    }
+
+}   
