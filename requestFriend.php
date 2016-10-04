@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-    <title>Mini Museum</title>
+    <title>My Museum</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -53,10 +53,17 @@ mysql_query($sql);
 
 
 echo '<div class="col-lg-12 edit">';
-echo '<h3> You have requested a ticket to visit '.$UserName.'&#39;s Museum!</h3>';
+echo '<h3>You have requested a ticket to visit '.$UserName.'&#39;s Museum!</h3>';
+echo '<br><br><p>(Upon accepting, '.$UserName.' will also be given a ticket to your museum)</p>';
 echo '<br><br>';
 echo '<FORM METHOD="LINK" ACTION="memberlist.php">
-<INPUT TYPE="submit" class="btn btn-primary" VALUE="Looking Forward To It!">
+<INPUT TYPE="submit" class="btn btn-primary"  style="width: 170px;" VALUE="Looking Forward To It!">
+</FORM>';
+echo '<form action="cancelRequest.php" method="post"/>
+<input type="hidden" name="idCancel" value="'.$_POST['id'].'"/>
+<input type="hidden" name="userNameCancel" value="'.$UserName.'"/>
+<input type="hidden" name="myUserIdCancel" value="'.$myUserId.'"/>
+<INPUT TYPE="submit" class="btn btn-danger" style="width: 170px;" VALUE="Cancel Request">
 </FORM>';
 echo '</div>';
 

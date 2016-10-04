@@ -4,5 +4,5 @@
      
     unset($_SESSION['user']); 
      
-    header("Location: index.php"); 
-    die("Redirecting to: index.php");
+    header("Location: datagenerator.php"); 
+    die("Redirecting to: datagenerator.php");

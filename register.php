@@ -12,7 +12,12 @@
         if(empty($_POST['password'])) 
         { 
             die("Please enter a password."); 
-        } 
+        }
+
+        if(!isset($_POST['agree'])) 
+        {
+            die("Please check that you agree to MyMuseum's Terms."); 
+        }
          
         if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) 
         { 
@@ -38,7 +43,7 @@
         } 
         catch(PDOException $ex) 
         { 
-            die("Failed to run query: " . $ex->getMessage()); 
+            die("Sorry, there was an error. Please try again."); 
         } 
          
         $row = $stmt->fetch(); 
@@ -67,7 +72,7 @@
         } 
         catch(PDOException $ex) 
         { 
-            die("Failed to run query: " . $ex->getMessage()); 
+            die("Sorry, there was an error. Please try again."); 
         } 
          
         $row = $stmt->fetch(); 
@@ -114,7 +119,7 @@
         } 
         catch(PDOException $ex) 
         { 
-            die("Failed to run query: " . $ex->getMessage()); 
+            die("Sorry, there was an error. Please try again.");
         } 
 
         $userName = $_POST['username'];
@@ -138,7 +143,7 @@
         } 
         catch(PDOException $ex) 
         { 
-            die("Failed to run query: " . $ex->getMessage()); 
+            die("Sorry, there was an error. Please try again.");
         } 
 
         $userName = $_POST['username'];
@@ -162,7 +167,7 @@
         } 
         catch(PDOException $ex) 
         { 
-            die("Failed to run query: " . $ex->getMessage()); 
+            die("Sorry, there was an error. Please try again.");
         } 
 
         $userName = $_POST['username'];
@@ -186,7 +191,75 @@
         } 
         catch(PDOException $ex) 
         { 
-            die("Failed to run query: " . $ex->getMessage()); 
+            die("Sorry, there was an error. Please try again.");
+        } 
+
+
+        $userName = $_POST['username'];
+        
+        $query = " 
+            CREATE TABLE `mymuseum`.`profile-".$userName."` (
+                id INT NOT NULL AUTO_INCREMENT,
+                picture LONGBLOB,
+                bio MEDIUMTEXT,
+                museum MEDIUMTEXT,
+                PRIMARY KEY (id)
+        )"; 
+
+        /*$query_params = array( 
+
+            ':request' => 'friendrequest'.$userName.''
+        );*/ 
+         
+        try 
+        { 
+            $stmt = $db->prepare($query); 
+            $result = $stmt->execute($query_params); 
+        } 
+        catch(PDOException $ex) 
+        { 
+           die("Sorry, there was an error. Please try again.");
+        } 
+
+
+        $userName = $_POST['username'];
+        
+        $query = "INSERT INTO mymuseum.`profile-".$userName."`(bio) VALUES (' ')";
+
+        /*$query_params = array( 
+
+            ':request' => 'friendrequest'.$userName.''
+        );*/ 
+         
+        try 
+        { 
+            $stmt = $db->prepare($query); 
+            $result = $stmt->execute($query_params); 
+        } 
+        catch(PDOException $ex) 
+        { 
+            die("Sorry, there was an error. Please try again."); 
+        } 
+
+        
+
+        $userName = $_POST['username'];
+        
+        $query = "INSERT INTO mymuseum.`friends-".$userName."`(friends) VALUES ('51')"; /*51 in QA*/ 
+
+        /*$query_params = array( 
+
+            ':request' => 'friendrequest'.$userName.''
+        );*/ 
+         
+        try 
+        { 
+            $stmt = $db->prepare($query); 
+            $result = $stmt->execute($query_params); 
+        } 
+        catch(PDOException $ex) 
+        { 
+            die("Sorry, there was an error. Please try again."); 
         } 
 
         /*$query = " 
@@ -195,6 +268,8 @@
                 friends INT,
                 PRIMARY KEY (id)
         )"; 
+
+
 
         $userName = $_POST['username'];
          
@@ -250,9 +325,9 @@
 <br>
 <br>
 <br>
-<br>
+
 <div class="container">
-<div class="form-group col-md-12 col-md-offset-4">
+<div class="form-group text-center">
 <h4>Register</h4> 
 <br>
 <br> 
@@ -266,7 +341,9 @@
     Password:<br /> 
     <input type="password" name="password" value="" /> 
     <br /><br /> 
-    <input type="submit" class="btn btn-default btn-file" value="Register" /> 
+    <input type="checkbox" name="agree" value=""> I agree to <a href="terms.php">MyMuseum\'s Terms</a><br>
+                    <br />
+    <input type="submit" class="btn btn-default btn-file" style="border: 1px solid lightgrey;" value="Register" /> 
 </form>
 
 

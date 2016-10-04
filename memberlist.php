@@ -34,7 +34,7 @@
     { 
         // Note: On a production website, you should not output $ex->getMessage(). 
         // It may provide an attacker with helpful information about your code.  
-        die("Failed to run query: " . $ex->getMessage()); 
+       die("Sorry, there was an error. Please try again.");
     } 
          
     // Finally, we can retrieve all of the found rows into an array using fetchAll 
@@ -97,7 +97,8 @@ while ($row = mysql_fetch_assoc($result3)) {
     <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
-    <link rel="shortcut icon" href="assets/myIcon.png">
+    <link rel="shortcut icon" href="assets/myIcon6.png">
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="assets/myIcon6.png" />
 
 
     <!-- Custom Fonts -->
@@ -107,12 +108,13 @@ while ($row = mysql_fetch_assoc($result3)) {
 
 <body>
 
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-default navbar-fixed-top mainPc">
     <div class="container">
-        <div class="two">
+        <div class="two" style="margin-top: -8px;">
             <table>
                 <tr>
-                    <td><h4>my museum</h4></td>
+                    <td><h4><img src="assets/myIcon7.png" style="margin: 3px 3px; width: 55px; height 55px; padding-top:5px; padding-right:6px;"></h4></td>
+                    <td><h4><span style="font-size: 35px;">mymuseum</span></h4></td>
                 </tr>
             </table>
         </div>
@@ -127,20 +129,12 @@ while ($row = mysql_fetch_assoc($result3)) {
                         <tr class="nav">
                             
                             <td>
-                                <a class="btn btn-default btn-file" href="private.php">Home</a>
+                                <a class="btn btn-default btn-file" href="private.php">Back to My Museum</a>
                             </td>
                             <td>&nbsp;</td>
                             <td>&nbsp;</td>
-                            <td class="dropdown">
-                                <!-- Drop down menu -->
-                                <a class="dropdown-toggle btn btn-default btn-file" href="#" data-toggle="dropdown">Visit Museums <strong class="caret"></strong></a>
-                                <div class="dropdown-menu" style="padding: 15px 15px 0px; width: 100px;">
-                                    
-                                        <table>
-                                            <?php include 'visitFriendsDropdown.php';?>
-                                        </table>  
-                                </div>        
-                            </td>
+                            
+                            <?php include 'visitFriendsDropdown.php';?>
 
                             <td>&nbsp;</td>
                             <td>&nbsp;</td>
@@ -159,7 +153,7 @@ while ($row = mysql_fetch_assoc($result3)) {
                                 <!-- Drop down menu -->
                                 <a class="dropdown-toggle" href="#" data-toggle="dropdown"><i class="fa fa-cog"></i></a>
                                 <div class="dropdown-menu dropdown-menu-right" style="padding: 15px; width: 50px;">
-                                        <table>
+                                        <table align="center">
                                             <tr>
                                                 <td><a href="edit_account.php">Edit Account</a><br /></td>
                                             </tr>
@@ -209,11 +203,37 @@ while ($row = mysql_fetch_assoc($result3)) {
         </div>-->
     </div>
 </nav>
+<nav class="navbar navbar-default navbar-fixed-top mainMobile">
+    
+    <div class="container">
+        <div class="text-center">
+           
+            <h4>my museum</h4>
+             
+            <br>
+        </div>
+    </div>
 
-<br>
+</nav>
+
+<br class="mainPc">
+
+<nav class="navbar navbar-default navbar-fixed-bottom mainMobile">
+    <div class="nav navbar-nav" style="margin: 10px 5px;">
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-xs-3"><a href="private.php" style="color: grey;"><i class="fa fa-university fa-2x"></i></a></div>
+                <div class="col-xs-3"><a href="memberlist.php" style="color: red;"><i class="fa fa-search fa-2x"></i></a></div>
+                <div class="col-xs-3"><a href="visitFriendsDropdownMobile.php" style="color: grey;"><i class="fa fa-ticket fa-2x"></i></a></div>
+                <div class="col-xs-3"><a href="accountSettingsMobile.php" style="color: grey;"><i class="fa fa-gear fa-2x"></i></a></div>
+            </div>
+        </div>   
+    </div>
+</nav>
+
 <?php
 echo'<div class="memberList">';
-echo'<h3>other museums</h3> 
+echo'<h3>museums</h3> 
 <br>';
     echo '<table> 
         <tr> 
@@ -221,9 +241,9 @@ echo'<h3>other museums</h3>
         </tr>';
         foreach($rows as $row):
             $myId = $_SESSION['userid'];
-            if ($row['id'] != $_SESSION['userid']) {
+            if ($row['id'] != $_SESSION['userid'] && $row['id'] != 51) {  /*51 in QA*/
             echo'<tr>';
-                echo'<td>'.$row['username'].'</td>';
+                echo'<td style="font-size: 16px;">'.$row['username'].'</td>';
                 echo'<td>&nbsp;</td>
                      <td>&nbsp;</td>';
                 if (in_array($row['id'], $friends)) {
@@ -238,23 +258,24 @@ echo'<h3>other museums</h3>
                     <input type="hidden" name="myUserId" value="'.$_SESSION['userid'].'"/>
                 </td>';
                 echo'<td>
-                    <input type="submit" class="btn btn-primary btn-file" value="Visit Museum">
+                    <input type="submit" class="btn btn-success btn-file" style="width:130px;" value="Visit Museum">
                 </td>';
                 echo'</form>';
                 }
                 else if (in_array($row['id'], $friendRequestsTo)) {
-                echo'<form action="acceptFriends.php" method="post"/>';
+                echo'<form action="cancelRequest.php" method="post"/>';
                 echo'<td>
-                    <input type="hidden" name="id" value="'.$row['id'].'"/>
+                    <input type="hidden" name="idCancel" value="'.$row['id'].'"/>
                 </td>
                 <td>
-                    <input type="hidden" name="user-Name" value="'.$row['username'].'"/>
+                    <input type="hidden" name="userNameCancel" value="'.$row['username'].'"/>
                 </td>
                 <td>
-                    <input type="hidden" name="myUserId" value="'.$_SESSION['userid'].'"/>
+                    <input type="hidden" name="myUserIdCancel" value="'.$_SESSION['userid'].'"/>
                 </td>';
                 echo'<td>
-                    <div class="btn btn-warning btn-file disabled">Awaiting Ticket</div>
+                    <div class="btn btn-warning btn-file disabled" style="width:130px;">Awaiting Ticket</div>
+                    <button type="submit" class="btn btn-danger btn-file" title="Cancel Request"><i class="fa fa-times"></i></button>
                 </td>';
                 echo'</form>';
                 }
@@ -270,7 +291,7 @@ echo'<h3>other museums</h3>
                     <input type="hidden" name="myUserId" value="'.$_SESSION['userid'].'"/>
                 </td>';
                 echo'<td>
-                    <input type="submit" class="btn btn-warning btn-file" value="Give Ticket">
+                    <input type="submit" class="btn btn-warning btn-file" style="width:130px;" value="Give Ticket">
                 </td>';
                 echo'</form>';
                 }
@@ -286,7 +307,7 @@ echo'<h3>other museums</h3>
                     <input type="hidden" name="myUserId" value="'.$_SESSION['userid'].'"/>
                 </td>';
                 echo'<td>
-                    <input type="submit" class="btn btn-success btn-file" value="Request Ticket">
+                    <input type="submit" class="btn btn-primary btn-file" style="width:130px;" value="Request Ticket">
                 </td>';
                 echo'</form>';
                 }
@@ -298,11 +319,16 @@ echo'<h3>other museums</h3>
         
     echo'</table> 
 <br>
-<br>';
+<br>
+<br class="mainMobile">
+<br class="mainMobile">';
 echo '<FORM METHOD="LINK" ACTION="private.php">
-<INPUT TYPE="submit" class="btn btn-primary" VALUE="Return to your Exhibit">
+<INPUT TYPE="submit" class="btn btn-info btn-lg mainPc" VALUE="Return to your Exhibit">
 </FORM>';
-echo'</div>';
+echo'</div>
+<br class="mainPc">
+<br class="mainPc">
+<br class="mainPc">';
 ?>
 <!--<a href="memberlist.php">Memberlist</a><br />-->
 <!--<a href="edit_account.php">Edit Account</a><br />-->

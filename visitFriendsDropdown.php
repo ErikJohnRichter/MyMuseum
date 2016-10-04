@@ -61,7 +61,7 @@ if ($friendCount[0] != 0) {
 echo'<td class="dropdown">
     <!-- Drop down menu -->
     <a class="dropdown-toggle btn btn-default btn-file" href="#" data-toggle="dropdown">Visit Museums <strong class="caret"></strong></a>
-    <div class="dropdown-menu" style="padding: 15px 15px 0px; width: 200px;">
+    <div class="dropdown-menu" style="padding: 15px 15px 0px;">
         <table>';
             foreach($rows as $row):
                 $myId = $_SESSION['userid'];
@@ -69,7 +69,7 @@ echo'<td class="dropdown">
                     echo'<form action="visitFriends.php" method="post"/>';
                     echo'<tr>';
 
-                    echo'<td>'.$row['username'].'</td>';
+                    echo'<td style="font-size: 16px;">'.$row['username'].'</td>';
                     echo'<td>&nbsp;</td>
                          <td>&nbsp;</td>';
                     echo'<td>
@@ -80,7 +80,7 @@ echo'<td class="dropdown">
                     </td>';
                     
                     echo'<td>
-                        <input type="submit" class="btn btn-sm btn-success btn-file" value="Visit">
+                        <input type="submit" class="btn btn-success btn-file" value="Visit">
                     </td>';
                     echo'</tr>';
                     echo'<tr><td>&nbsp;</td></tr>';

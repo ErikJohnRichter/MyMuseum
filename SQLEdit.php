@@ -25,29 +25,59 @@
 <body>
 <?php 
 $id = $_POST['id'];
-$Artifact = $_POST['id2'];
+$Artifact = strip_tags(htmlspecialchars_decode($_POST['id2'], ENT_QUOTES));
+$About = strip_tags(htmlspecialchars_decode($_POST['id3'], ENT_QUOTES));
+$photo = $_POST['id4'];
 echo '<div class="container">
     <div class="text-center">
         <h3>'.$Artifact.'</h3>
     </div>
-    <div class="col-md-8 col-md-offset-4">
+    
         
+        <br>
+        <br>
+
+        <div class="col-md-8 col-md-offset-4">
+        <img style="max-width: 150px;" src="data:image/jpeg;base64,'. $photo .'" alt="Picture" />
         <br>
         <br>
         <form action="edit_artifact.php" method="post" enctype="multipart/form-data"/>
             <table>
                 <tr>
-                    <td><input type="text" id="Title" class="form-control" size="35" name="Title" placeholder="New Name" style="margin-bottom: 5px;" /></td>
+                    <td><span class="btn btn-default btn-file btn-info">Get New Photo<input type="file" name="Photo" id="files" accept="image/*" /> </span> (optional)
+                                                <output id="list"></output>'; ?>
+
+                                                <script>
+                                                  function handleFileSelect(evt) {
+                                                    var files = evt.target.files; // FileList object
+
+                                                    // files is a FileList of File objects. List some properties.
+                                                    var output = [];
+                                                    for (var i = 0, f; f = files[i]; i++) {
+                                                      output.push('<li><strong>Image Attached</strong> ',
+                                                                  '</li>');
+                                                    }
+                                                    document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
+                                                  }
+
+                                                  document.getElementById('files').addEventListener('change', handleFileSelect, false);
+                                                </script>
+                                                <?php
+                                                echo '</td>
+                                                
                 </tr>
                 <tr>
-                    <td><textarea type="text" rows="10" class="form-control" id="About" name="About" placeholder="New Description" style="margin-bottom: 5px;" /></textarea></td>
+                    <td><input type="text" id="Title" class="form-control" size="35" name="Title" Value="'.$Artifact.'" style="margin-bottom: 5px;" /></td>
+                </tr>
+                <tr>
+                    <td><textarea type="text" rows="10" class="form-control" id="About" name="About" style="margin-bottom: 5px;" />'.$About.'</textarea></td>
                     <input type="hidden" name="id" id="id" value="'.$id.'"/>
                 </tr>
                 
                 <td>&nbsp;</td>
 
                 <tr>
-                    <td><input type="submit" class="btn btn-default btn-file" value="Edit"></td>
+                    <td><input type="submit" class="btn btn-success btn-file" value="Save Edit" onclick="this.disabled=true;this.form.submit();"></td>
                 </tr>
             </table>  
         </form>

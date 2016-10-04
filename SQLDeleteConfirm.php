@@ -25,11 +25,16 @@
 <body>
 <?php
 $id = $_POST['id'];
-$artifact = $_POST['id2'];
+$artifact = strip_tags(htmlspecialchars_decode($_POST['id2'], ENT_QUOTES));
 
 echo '<div class="col-lg-12 edit">';
-echo '<h3>Are you sure you want to delete '.$artifact.'?</h3>';
-echo '<br>';
+if ($artifact != NULL) {
+    echo '<h3>Are you sure you want to delete '.$artifact.'?</h3>';
+}
+else {
+    echo '<h3>Are you sure you want to delete this?</h3>';
+}
+echo '<br><br>';
 
 echo '<div class="container">
                     <div class="row">
@@ -37,12 +42,13 @@ echo '<div class="container">
                        
                             
                                         <form action="private.php" method="post" enctype="multipart/form-data"/>                  
-                                            <input type="submit" class="btn btn-success btn-sm" value="No! Go Back!">
+                                            <input type="submit" class="btn btn-success" value="No! Go Back!">
                                         </form>
                                     
                                         <form action="SQLDelete.php" method="post" enctype="multipart/form-data"/>                  
                                             <input type="hidden" name="id" value="'.$id.'"/>
-                                            <input type="submit" class="btn btn-danger btn-sm delete" value="Delete Artifact">
+                                            <input type="hidden" name="id2" value="'.$artifact.'"/>
+                                            <input type="submit" class="btn btn-danger delete" value="Delete Artifact">
                                         </form>
                                 
                         

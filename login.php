@@ -29,7 +29,9 @@
         } 
         catch(PDOException $ex) 
         { 
-            die("Failed to run query: " . $ex->getMessage()); 
+            die("Sorry, there was an error. Please try again.");
+            
+            /*die("Failed to run query: " . $ex->getMessage()); */
         } 
          
         $login_ok = false; 
@@ -63,7 +65,9 @@
         } 
         else 
         { 
-            print("Login Failed."); 
+            echo'<div class="text-center">
+            <h3>bummer! that didn\'t work...try again.<h3>
+            </div>'; 
             
             $submitted_username = htmlentities($_POST['username'], ENT_QUOTES, 'UTF-8'); 
         } 
@@ -102,7 +106,7 @@
 <br>
 <br>
 <div class="container">
-<div class="form-group col-md-12 col-md-offset-4">
+<div class="form-group text-center">
 <h4>Login</h4> 
 <br>
 <br>
@@ -113,7 +117,7 @@
     
     <input type="password" placeholder=" Password" name="password" value="" /> 
     <br /><br /> 
-    <input type="submit" class="btn btn-default btn-file" value="Login" />&nbsp;&nbsp;&nbsp;&nbsp; or <a href="register.php">Register</a>
+    <input type="submit" class="btn btn-default btn-file" style="border: 1px solid lightgrey;" value="Login" />&nbsp;&nbsp;&nbsp;&nbsp; or <a href="register.php">Register</a>
 </form>
 
 
